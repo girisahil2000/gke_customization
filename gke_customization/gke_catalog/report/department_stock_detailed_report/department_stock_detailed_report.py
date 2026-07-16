@@ -49,6 +49,7 @@ def get_columns():
         {"fieldname": "locker", "label": _("Locker"), "fieldtype": "Data", "width": 100},
         {"fieldname": "current_dept", "label": _("Current Dept"), "fieldtype": "Link", "options": "Department", "width": 150},
         {"fieldname": "current_mgr", "label": _("Current Mgr"), "fieldtype": "Data", "width": 180},
+        {"fieldname": "remark", "label": _("Remark"), "fieldtype": "Data", "width": 200},
     ]
 
 
@@ -110,7 +111,8 @@ def get_data(filters):
              FROM `tabEmployee` e
              WHERE e.department = wh.department
                AND e.designation = 'Manager'
-             LIMIT 1) AS current_mgr
+             LIMIT 1) AS current_mgr,
+        sn._comments AS remark     
         FROM `tabSerial No` sn
         LEFT JOIN `tabItem` i
             ON i.name = sn.item_code
